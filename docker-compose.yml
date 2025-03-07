@@ -1,0 +1,22 @@
+services:
+  flask:
+    build: .
+    container_name: flask-api
+    ports:
+      - "5000:5000"
+    networks:
+      - my_new_network
+  node:
+    build: .
+    container_name: node-api
+    ports:
+      - "3000:3000"
+    depends_on:
+      - flask
+    networks:
+      - my_new_network
+
+networks:
+  my_new_network:
+    driver: bridge
+
